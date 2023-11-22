@@ -8,7 +8,7 @@ import (
 
 // indexHandler is the handler for the index route.
 
-func indexHandler(c echo.Context) error {
+func (e *echo.Echo)indexHandler(c echo.Context) error {
 	cmp := template.Index()
 	c.Response().Header().Set(echo.HeaderContentType, echo.MIMETextHTML)
 	return cmp.Render(c.Request().Context(), c.Response().Writer)
