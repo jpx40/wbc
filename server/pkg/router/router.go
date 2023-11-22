@@ -8,12 +8,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func Router() {
+
+func Start() {
+	e.Logger.Fatal(e.Start(":1323"))
+}
+func Router() *echo.Echo {
 	e := echo.New()
 	e.Static("/home/jonas/code/go/web/wbc/server/assets", "static")
 
-	e.GET("/", indexHandler)
-	e.Logger.Fatal(e.Start(":1323"))
+	return e
 }
 
 // e.GET("/show", show)
