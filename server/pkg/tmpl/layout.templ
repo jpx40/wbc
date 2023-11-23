@@ -1,0 +1,63 @@
+package tmpl
+
+templ Index(c templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en-US">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width"/>
+			<title>Dev</title>
+			<script src="https://cdn.tailwindcss.com"></script>
+		</head>
+		<style>
+  #body {
+    background: #1B1B1B;
+  }
+
+  #chat {
+    text-align: left;
+    background: #343434;
+    width: 500px;
+    min-height: 300px;
+    padding: 20px;
+  }
+</style>
+		<body id="body">
+			@c
+		</body>
+	</html>
+}
+
+templ SimpleChat() {
+	<center>
+		<h3 class="text-white">Chat</h3>
+		<pre id="chat"></pre>
+		<input placeholder="say something" id="text" type="text"/>
+	</center>
+	<script>
+  var url = "ws://" + window.location.host + "/ws";
+  var ws = new WebSocket(url);
+  var name = "Guest" + Math.floor(Math.random() * 1000);
+
+  var chat = document.getElementById("chat");
+  var text = document.getElementById("text");
+
+  var now = function () {
+    var iso = new Date().toISOString();
+    return iso.split("T")[1].split(".")[0];
+  };
+
+  ws.onmessage = function (msg) {
+    var line = now() + " " + msg.data + "\n";
+    chat.innerText += line;
+  };
+
+  text.onkeydown = function (e) {
+    if (e.keyCode === 13 && text.value !== "") {
+      ws.send("<" + name + "> " + text.value);
+      text.value = "";
+    }
+  };
+
+</script>
+}
