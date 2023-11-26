@@ -12,7 +12,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "v": "vite build",
+    "watch": "rollup -c -w 'src/**'",
+    "build": "rollup -c",
+
   },
   "dependencies": {
     "lit": "^2.0.0"

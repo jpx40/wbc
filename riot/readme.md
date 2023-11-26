@@ -1,21 +1,20 @@
 # cmp
 
-
-
 ## Start
 
 ```
-npm start
+pnpm start
 ```
 
 ## Test
 
 ```
-npm test
+pnpm test
 ```
 
 ## Build
 
 ```
-npm run build
+pnpm run build
 ```
+
