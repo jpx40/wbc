@@ -159,3 +159,5 @@ dist
 # go temp
 
 tmp
+
+.vscode
