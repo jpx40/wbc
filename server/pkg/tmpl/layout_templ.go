@@ -41,11 +41,20 @@ func Index(c templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</script><script src=\"https://unpkg.com/htmx.org@1.9.9\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var4 := ``
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</script></head><style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var4 := `
+		templ_7745c5c3_Var5 := `
   #body {
     background: #1B1B1B;
   }
@@ -58,7 +67,7 @@ func Index(c templ.Component) templ.Component {
     padding: 20px;
   }
 `
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -89,51 +98,113 @@ func SimpleChat() templ.Component {
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var5 == nil {
-			templ_7745c5c3_Var5 = templ.NopComponent
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<center><h3 class=\"text-white\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var6 := `Chat`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
+		templ_7745c5c3_Var7 := `Chat`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3><pre id=\"chat\"></pre><input placeholder=\"say something\" id=\"text\" type=\"text\"></center><script>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3><pre id=\"chat\"></pre><input placeholder=\"say something\" id=\"text\" type=\"text\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var7 := `
-  var url = "ws://" + window.location.host + "/ws";
-  var ws = new WebSocket(url);
-  var name = "Guest" + Math.floor(Math.random() * 1000);
+		templ_7745c5c3_Err = ChatScript().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</center>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
 
-  var chat = document.getElementById("chat");
-  var text = document.getElementById("text");
+func ChatScript() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var9 := `
 
-  var now = function () {
-    var iso = new Date().toISOString();
-    return iso.split("T")[1].split(".")[0];
-  };
+  let user = {
+    name: "",
+  }
+  let msg = {
+    user: "",
+    msg: "",
+    room: 0,
+    time: "",
 
-  ws.onmessage = function (msg) {
-    var line = now() + " " + msg.data + "\n";
-    chat.innerText += line;
-  };
+  }
+  let messages = [];
+  const url = "ws://" + window.location.host + "/ws";
+  const ws = new WebSocket(url);
+  const name = "Guest" + Math.floor(Math.random() * 1000);
+  const fragment = new DocumentFragment();
 
-  text.onkeydown = function (e) {
-    if (e.keyCode === 13 && text.value !== "") {
+
+  ws.addEventListener("open", (event) => {
+
+    ws.send("Hello Server!");
+  });
+  ws.addEventListener("message", (event) => {
+    console.log("Message from server ", event.data);
+    messageHandler(event);
+  });
+
+  ws.addEventListener("close", (event) => {
+    ws.close();
+  })
+
+  let chat = document.getElementById("chat");
+  let text = document.getElementById("text");
+
+  text.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && text.value !== "") {
       ws.send("<" + name + "> " + text.value);
       text.value = "";
     }
-  };
+  })
+  function now() {
+    let iso = new Date().toISOString();
+    return iso.split("T")[1].split(".")[0];
+  }
+  function messageHandler(event) {
+    let line = now() + " " + event.data + "\n";
+    const span = document.createElement("span");
+    span.innerText = line;
+    span.setAttribute("class", "text-white font-italic rounded-sm bg-gray-700 px-2 py-1 my-2 block");
+    fragment.appendChild(span);
+
+    chat.appendChild(fragment);
+  }
 
 `
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
