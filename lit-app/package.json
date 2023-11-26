@@ -14,7 +14,7 @@
     "dev": "vite",
     "v": "vite build",
     "watch": "rollup -c -w 'src/**'",
-    "build": "rollup -c",
+    "build": "rollup -c"
 
   },
   "dependencies": {
