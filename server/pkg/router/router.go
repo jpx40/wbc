@@ -31,7 +31,7 @@ func Router() {
 	// 	AllowCredentials: false,
 	// 	MaxAge:           300, // Maximum value not ignored by any of major browsers
 	// }))
-	r.Get("/", templ.Handler(tmpl.Index(tmpl.SimpleChat())).ServeHTTP)
+	r.Get("/", templ.Handler(tmpl.Index()).ServeHTTP)
 
 	r.Get("/ws", func(w http.ResponseWriter, r *http.Request) {
 		m.HandleRequest(w, r)
