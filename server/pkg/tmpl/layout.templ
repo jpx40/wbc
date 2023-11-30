@@ -1,17 +1,16 @@
 package tmpl
 
 templ Index(c templ.Component) {
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Dev</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
-</head>
-<style>
+	<!DOCTYPE html>
+	<html lang="en-US">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width"/>
+			<title>Dev</title>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
+		</head>
+		<style>
   #body {
     background: #1B1B1B;
   }
@@ -24,35 +23,26 @@ templ Index(c templ.Component) {
     padding: 20px;
   }
 </style>
-
-<body id="body">
-  @c
-</body>
-
-</html>
+		<body id="body">
+			@c
+		</body>
+	</html>
 }
 
 templ SimpleChat() {
-<center>
-  <h3 class="text-white">Chat</h3>
-  <pre id="chat"></pre>
-  <input placeholder="say something" id="text" type="text" />
-  @ChatScript()
-</center>
+	<center>
+		<h3 class="text-white">Chat</h3>
+		<pre id="chat"></pre>
+		<input placeholder="say something" id="text" type="text"/>
+		@ChatScript()
+	</center>
 }
 
 templ ChatScript() {
-<script>
+	<script>
 
   let user = {
     name: "",
-  }
-  let msg = {
-    user: "",
-    msg: "",
-    room: 0,
-    time: "",
-
   }
   let messages = [];
   const url = "ws://" + window.location.host + "/ws";
@@ -60,13 +50,17 @@ templ ChatScript() {
   const name = "Guest" + Math.floor(Math.random() * 1000);
   const fragment = new DocumentFragment();
 
-
+  let msg = {
+    user: "",
+    msg: "",
+  }
   ws.addEventListener("open", (event) => {
 
-    ws.send("Hello Server!");
+    // ws.send("Hello Server!");
   });
   ws.addEventListener("message", (event) => {
-    console.log("Message from server ", event.data);
+    data = JSON.parse(event.data);
+    console.log("Message from server ", data.msg);
     messageHandler(event);
   });
 
@@ -79,7 +73,10 @@ templ ChatScript() {
 
   text.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && text.value !== "") {
-      ws.send("<" + name + "> " + text.value);
+      tmp = msg;
+      tmp.user = name;
+      tmp.msg = text.value;
+      ws.send(JSON.stringify(tmp));
       text.value = "";
     }
   })
@@ -88,7 +85,8 @@ templ ChatScript() {
     return iso.split("T")[1].split(".")[0];
   }
   function messageHandler(event) {
-    let line = now() + " " + event.data + "\n";
+    msg = JSON.parse(event.data);
+    let line = now() + ": " + msg.msg + "\n";
     const span = document.createElement("span");
     span.innerText = line;
     span.setAttribute("class", "text-white font-italic rounded-sm bg-gray-700 px-2 py-1 my-2 block");

@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/olahol/melody"
@@ -38,6 +39,7 @@ func Router() {
 	})
 
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
+		fmt.Println(string(msg))
 		m.Broadcast(msg)
 	})
 
