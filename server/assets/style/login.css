@@ -1,0 +1,18 @@
+#loginbox {
+  display: grid;
+  grid: repeat(3, 70px) / auto-flow 200px;
+  justify-content: center;
+  align-content: center;
+}
+
+#loginbox > #username {
+  grid-row-start: 1;
+}
+
+#loginbox > #password {
+  grid-row-start: 2;
+}
+
+#signupbox > #submit {
+  grid-row-start: 3;
+}

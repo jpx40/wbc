@@ -5,8 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type db gorm.DB
-
+// type db gorm.DB
 func Connect() *gorm.DB {
 	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
