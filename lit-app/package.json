@@ -15,10 +15,16 @@
     "v": "vite build",
     "watch": "rollup -c -w 'src/**'",
     "build": "rollup -c"
-
   },
   "dependencies": {
-    "lit": "^2.0.0"
+    "@logux/client": "^0.20.1",
+    "@logux/core": "^0.8.5",
+    "@nanostores/i18n": "^0.12.0",
+    "@nanostores/logger": "^0.2.4",
+    "@nanostores/query": "^0.2.8",
+    "@nanostores/router": "^0.11.0",
+    "lit": "^2.0.0",
+    "nanostores": "^0.9.5"
   },
   "devDependencies": {
     "@types/node": "^16.10.2",

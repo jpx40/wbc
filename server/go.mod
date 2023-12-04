@@ -7,6 +7,7 @@ require (
 	github.com/a-h/templ v0.2.476
 	github.com/alecthomas/chroma v0.10.0
 	github.com/go-chi/chi/v5 v5.0.10
+	github.com/go-chi/cors v1.2.1
 	github.com/gomarkdown/markdown v0.0.0-20231115200524-a660076da3fd
 	github.com/olahol/melody v1.1.4
 	gorm.io/driver/sqlite v1.5.4
