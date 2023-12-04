@@ -1,0 +1,20 @@
+#signupbox {
+  display: grid;
+  grid: repeat(4, 70px) / auto-flow 200px;
+  justify-content: center;
+  align-content: center;
+}
+#signupbox > #username {
+  grid-row-start: 1;
+}
+#signupbox > #password {
+  grid-row-start: 2;
+}
+
+#signupbox > #email {
+  grid-row-start: 3;
+}
+
+#signupbox > #submit {
+  grid-row-start: 4;
+}

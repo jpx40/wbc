@@ -1,0 +1,17 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  riot:
+    specifier: ^9.1.1
+    version: 9.1.1
+
+packages:
+
+  /riot@9.1.1:
+    resolution: {integrity: sha512-06O9U3Qv7OgERocoeMEbLAS6oGFknWl08k29usS/hAmXtML6q9lK45DkFqMRq7NM2BvaD5rEgI9AmwGUje7SxQ==}
+    engines: {node: '>=18.0.0'}
+    dev: false
