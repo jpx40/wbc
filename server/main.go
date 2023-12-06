@@ -6,4 +6,9 @@ import (
 
 func main() {
 	router.Router()
+	test("e",
+		1)
+}
+
+func test(es string, i int) {
 }

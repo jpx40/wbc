@@ -59,6 +59,8 @@ func Router() {
 	filesDir := http.Dir(filepath.Join(workDir, "assets"))
 	FileServer(r, "/files", filesDir)
 
+	Page(r)
+
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
 		out, err := util.ParseJson(msg)
 		if err != nil {

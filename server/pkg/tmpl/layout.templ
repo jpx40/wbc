@@ -1,33 +1,38 @@
 package tmpl
 
 templ Index(comp templ.Component) {
-	<!DOCTYPE html>
-	<html lang="en-US">
-		<head>
-			<meta charset="UTF-8"/>
-			<meta name="viewport" content="width=device-width"/>
-			<title>Dev</title>
-			<script src="https://cdn.tailwindcss.com"></script>
-			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
-			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.css"/>
-			<script src="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-			<script defer src="https://unpkg.com/@alpinejs/ui@3.13.3-beta.1/dist/cdn.min.js"></script>
-			<script defer src="https://unpkg.com/@alpinejs/focus@3.13.3/dist/cdn.min.js"></script>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
-			<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-			<link rel="stylesheet" href="/files/style/global.css"/>
-		</head>
-		<body id="body">
-			@comp
-		</body>
-	</html>
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Dev</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.css" />
+  <script src="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script defer src="https://unpkg.com/@alpinejs/ui@3.13.3-beta.1/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@alpinejs/focus@3.13.3/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="/files/style/global.css" />
+  <script type="module" src="/files/js/cmp/counter.js"></script>
+  <script type="module" src="/files/js/cmp/child.js"></script>
+</head>
+
+<body id="body">
+  @comp
+</body>
+
+</html>
 }
 
 templ Home() {
-	<div class="flex items-center justify-center h-screen"></div>
-	<script>
+<div class="flex items-center justify-center h-screen"></div>
+<script>
   window.onload = () => {
     // window.location = "/login";
   }
@@ -35,36 +40,33 @@ templ Home() {
 }
 
 templ SimpleChat() {
-	<center>
-		<h3 class="text-white">Chat</h3>
-		<pre id="chat"></pre><input placeholder="say something" id="text" type="text"/>@ChatScript()
-	</center>
+<center>
+  <h3 class="text-white">Chat</h3>
+  <pre id="chat"></pre><input placeholder="say something" id="text" type="text" />@ChatScript()
+</center>
 }
 
 templ Login() {
-	<link type="text/css" rel="stylesheet" href="/assets/style/login.css"/>
-	<div id="loginbox" class="flex items-center justify-center h-screen">
-		<div id="username">
-			<h3 class="text-white">Username</h3>
-			<input id="username-field" placeholder="Username" type="text" class="rounded"/>
-		</div>
-		<div id="password">
-			<h3 class="text-white">Password</h3>
-			<input id="password-field" placeholder="Password" type="password" class="rounded"/>
-		</div>
-		<div id="submit">
-			<button
- 				id="login-button"
- 				class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
- 				onclick="login()"
-			>Login</button>
-		</div>
-	</div>
-	@LoginScript()
+<link type="text/css" rel="stylesheet" href="/assets/style/login.css" />
+<div id="loginbox" class="flex items-center justify-center h-screen">
+  <div id="username">
+    <h3 class="text-white">Username</h3>
+    <input id="username-field" placeholder="Username" type="text" class="rounded" />
+  </div>
+  <div id="password">
+    <h3 class="text-white">Password</h3>
+    <input id="password-field" placeholder="Password" type="password" class="rounded" />
+  </div>
+  <div id="submit">
+    <button id="login-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
+      onclick="login()">Login</button>
+  </div>
+</div>
+@LoginScript()
 }
 
 templ LoginScript() {
-	<script>
+<script>
   const user = {
     username: "",
     password: "",
@@ -125,33 +127,30 @@ templ LoginScript() {
 }
 
 templ Signup() {
-	<link type="text/css" rel="stylesheet" href="/assets/style/signup.css"/>
-	<div id="signupbox" class="flex items-center justify-center h-screen">
-		<div id="username">
-			<h3 class="text-white">Username</h3>
-			<input id="username-field" placeholder="Username" type="text" class="rounded"/>
-		</div>
-		<div id="password">
-			<h3 class="text-white">Password</h3>
-			<input id="password-field" placeholder="Password" type="password" class="rounded"/>
-		</div>
-		<div id="email">
-			<h3 class="text-white">Email</h3>
-			<input id="email-field" placeholder="Email" type="email" class="rounded"/>
-		</div>
-		<div id="submit">
-			<button
- 				id="signup-button"
- 				class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
- 				onclick="signup()"
-			>Signup</button>
-		</div>
-	</div>
-	@SignupScript()
+<link type="text/css" rel="stylesheet" href="/assets/style/signup.css" />
+<div id="signupbox" class="flex items-center justify-center h-screen">
+  <div id="username">
+    <h3 class="text-white">Username</h3>
+    <input id="username-field" placeholder="Username" type="text" class="rounded" />
+  </div>
+  <div id="password">
+    <h3 class="text-white">Password</h3>
+    <input id="password-field" placeholder="Password" type="password" class="rounded" />
+  </div>
+  <div id="email">
+    <h3 class="text-white">Email</h3>
+    <input id="email-field" placeholder="Email" type="email" class="rounded" />
+  </div>
+  <div id="submit">
+    <button id="signup-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
+      onclick="signup()">Signup</button>
+  </div>
+</div>
+@SignupScript()
 }
 
 templ SignupScript() {
-	<script>
+<script>
   const user = {
     username: "",
     password: "",
@@ -208,7 +207,7 @@ templ SignupScript() {
 }
 
 templ ChatScript() {
-	<script>
+<script>
   let user = {
     name: "",
   }
@@ -272,4 +271,14 @@ templ ChatScript() {
   }
 
 </script>
+}
+
+templ Counter() {
+<simple-counter count="0"></simple-counter>
+}
+
+templ Child() {
+<my-parent count="2">
+  <my-element></my-element>
+</my-parent>
 }
