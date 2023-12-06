@@ -1,7 +1,9 @@
 package main
 
 import (
+	_ "github.com/IBM/fp-go"
 	"github.com/jpx40/wdc/pkg/router"
+	_ "github.com/markbates/goth"
 )
 
 func main() {
