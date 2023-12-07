@@ -5,7 +5,7 @@
       __defProp(target, name, { get: all[name], enumerable: true });
   };
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/utils.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/utils.js
   var camelToDashMap = /* @__PURE__ */ new Map();
   function camelToDash(str) {
     let result = camelToDashMap.get(str);
@@ -43,7 +43,7 @@
   var storePointer = /* @__PURE__ */ new WeakMap();
   var probablyDevMode = walkInShadow.name === "walkInShadow";
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/emitter.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/emitter.js
   var queue = /* @__PURE__ */ new Set();
   function add(fn) {
     if (!queue.size)
@@ -64,7 +64,7 @@
     queue.clear();
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/cache.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/cache.js
   var entries = /* @__PURE__ */ new WeakMap();
   var stack = /* @__PURE__ */ new Set();
   function dispatch(entry) {
@@ -184,11 +184,6 @@
       setTimeout(() => {
         for (const e of gc) {
           if (!e.contexts || e.contexts.size === 0) {
-            if (e.deps) {
-              for (const depEntry of e.deps) {
-                depEntry.contexts.delete(e);
-              }
-            }
             const targetMap = entries.get(e.target);
             targetMap.delete(e.key);
           }
@@ -221,7 +216,7 @@
     }
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/render.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/render.js
   function render(fn, useShadow) {
     return {
       get: useShadow ? (host) => {
@@ -247,7 +242,7 @@
     };
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/value.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/value.js
   var setters = {
     string: (host, value2, attrName) => {
       const nextValue = value2 ? String(value2) : "";
@@ -312,7 +307,7 @@
     };
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/define.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/define.js
   var constructors = /* @__PURE__ */ new WeakMap();
   var disconnects = /* @__PURE__ */ new WeakMap();
   function compile(hybrids, HybridsElement) {
@@ -490,7 +485,7 @@
     })
   );
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/utils.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/utils.js
   var metaMap = /* @__PURE__ */ new WeakMap();
   function getMeta(key2) {
     let value2 = metaMap.get(key2);
@@ -532,7 +527,7 @@
   var TIMESTAMP = Date.now();
   var getPlaceholder = (id = 0) => `H-${TIMESTAMP}-${id}`;
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/layout.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/layout.js
   var hasAdoptedStylesheets = !!(globalThis.document && globalThis.document.adoptedStyleSheets);
   var NUMBER_REGEXP = /^\d+$/;
   var rules = {
@@ -782,7 +777,7 @@
     return className;
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/array.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/array.js
   var arrayMap = /* @__PURE__ */ new WeakMap();
   function movePlaceholder(target, previousSibling) {
     const meta = getMeta(target);
@@ -876,7 +871,7 @@
     }
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/node.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/node.js
   function resolveNode(host, target, value2) {
     removeTemplate(target);
     const meta = getMeta(target);
@@ -884,7 +879,7 @@
     target.parentNode.insertBefore(value2, target.nextSibling);
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/value.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/value.js
   function typeOf(value2) {
     const type = typeof value2;
     if (type === "object") {
@@ -924,7 +919,7 @@
     }
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/event.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/event.js
   var targets = /* @__PURE__ */ new WeakMap();
   function resolveEventListener(eventType) {
     return (host, target, value2, lastValue) => {
@@ -956,7 +951,7 @@
     };
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/class.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/class.js
   function addClassNames(set3, value2) {
     if (value2) {
       for (const className of String(value2).split(/\s+/)) {
@@ -995,7 +990,7 @@
     }
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/style.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/style.js
   var styleMap = /* @__PURE__ */ new WeakMap();
   function resolveStyle(host, target, value2) {
     if (value2 === null || typeof value2 !== "object") {
@@ -1023,7 +1018,7 @@
     styleMap.set(target, nextMap);
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/resolvers/property.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/resolvers/property.js
   function resolveProperty(attrName, propertyName, isSVG) {
     if (propertyName.substr(0, 2) === "on") {
       const eventType = propertyName.substr(2);
@@ -1051,7 +1046,7 @@
     }
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/core.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/core.js
   var PLACEHOLDER_REGEXP_TEXT = getPlaceholder("(\\d+)");
   var PLACEHOLDER_REGEXP_EQUAL = new RegExp(`^${PLACEHOLDER_REGEXP_TEXT}$`);
   var PLACEHOLDER_REGEXP_ALL = new RegExp(PLACEHOLDER_REGEXP_TEXT, "g");
@@ -1442,7 +1437,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
     };
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/helpers/index.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/helpers/index.js
   var helpers_exports = {};
   __export(helpers_exports, {
     resolve: () => resolve,
@@ -1450,7 +1445,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
     transition: () => transition_default
   });
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/helpers/resolve.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/helpers/resolve.js
   var promiseMap = /* @__PURE__ */ new WeakMap();
   function resolve(promise, placeholder, delay = 200) {
     return function fn(host, target) {
@@ -1480,7 +1475,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
     };
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/helpers/set.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/helpers/set.js
   function resolveValue2({ target, detail }, setter) {
     let value2;
     switch (target.type) {
@@ -1548,7 +1543,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
     return fn;
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/helpers/transition.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/helpers/transition.js
   var instance;
   var transition_default = globalThis.document && globalThis.document.startViewTransition !== void 0 && function transition(template) {
     return function fn(host, target) {
@@ -1573,7 +1568,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
   } || // istanbul ignore next
   ((fn) => fn);
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/methods.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/methods.js
   var methods_exports = {};
   __export(methods_exports, {
     css: () => css,
@@ -1605,7 +1600,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
     return this;
   }
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/template/index.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/template/index.js
   var PLACEHOLDER = getPlaceholder();
   var PLACEHOLDER_SVG = getPlaceholder("svg");
   var PLACEHOLDER_MSG = getPlaceholder("msg");
@@ -1640,7 +1635,7 @@ ${beautifyTemplateLog(signature, marker.index)}`
   }
   Object.freeze(Object.assign(html, helpers_exports));
 
-  // node_modules/.pnpm/hybrids@8.2.7/node_modules/hybrids/src/localize.js
+  // node_modules/.pnpm/hybrids@8.2.8/node_modules/hybrids/src/localize.js
   var dictionary = /* @__PURE__ */ new Map();
   var cache = /* @__PURE__ */ new Map();
   var translate = null;
