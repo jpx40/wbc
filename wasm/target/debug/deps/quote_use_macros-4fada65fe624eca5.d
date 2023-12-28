@@ -1,0 +1,10 @@
+/home/jonas/code/go/web/wbc/wasm/target/debug/deps/libquote_use_macros-4fada65fe624eca5.so: /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs
+
+/home/jonas/code/go/web/wbc/wasm/target/debug/deps/quote_use_macros-4fada65fe624eca5.d: /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs /home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs
+
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs:
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs:
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs:
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs:
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs:
+/home/jonas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs:
