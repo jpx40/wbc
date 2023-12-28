@@ -1,0 +1,115 @@
+package tmpl
+
+
+
+
+templ Signup_Css() {
+  <style>
+#signupbox {
+  display: grid;
+  grid: repeat(4, 70px) / auto-flow 200px;
+  justify-content: center;
+  align-content: center;
+}
+#signupbox > #username {
+  grid-row-start: 1;
+}
+#signupbox > #password {
+  grid-row-start: 2;
+}
+
+#signupbox > #email {
+  grid-row-start: 3;
+}
+
+#signupbox > #submit {
+  grid-row-start: 4;
+}
+
+</style>
+}
+
+
+templ Signup() {
+  @Signup_Css()
+
+<link type="text/css" rel="stylesheet" href="/assets/style/signup.css" />
+<div id="signupbox" class="flex items-center justify-center h-screen">
+  <div id="username">
+    <h3 class="text-white">Username</h3>
+    <input id="username-field" placeholder="Username" type="text" class="rounded" />
+  </div>
+  <div id="password">
+    <h3 class="text-white">Password</h3>
+    <input id="password-field" placeholder="Password" type="password" class="rounded" />
+  </div>
+  <div id="email">
+    <h3 class="text-white">Email</h3>
+    <input id="email-field" placeholder="Email" type="email" class="rounded" />
+  </div>
+  <div id="submit">
+    <button id="signup-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
+      onclick="signup()">Signup</button>
+  </div>
+</div>
+@SignupScript()
+}
+
+templ SignupScript() {
+<script>
+  const user = {
+    username: "",
+    password: "",
+    email: "",
+  }
+
+  window.onload = () => {
+
+  }
+  let email = document.getElementById("email-field");
+  let username = document.getElementById("username-field");
+  let password = document.getElementById("password-field");
+  function signup() {
+    user.username = username.value;
+    user.password = password.value;
+    user.email = email.value;
+
+    if (user.username === "" || user.password === "" || user.email === "") {
+      alert("All fields are required");
+    }
+    else if (username.value.length < 4) {
+      alert("Username must be at least 4 characters long");
+    }
+    else if (password.value.length < 8) {
+      alert("Password must be at least 8 characters long");
+    }
+    else if (!check_email(email.value)) {
+      alert("Invalid email");
+
+    }
+    else {
+      fetch("/signup/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }).then((res) => {
+        if (res.status === 200) {
+          //    window.location = "/login";
+          alert("Signup successful");
+
+          setTimeout(() => { window.location = "/chat"; }, 200);
+        }
+      });
+
+    }
+
+  }
+  //email validation
+  function check_email(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+</script>
+}

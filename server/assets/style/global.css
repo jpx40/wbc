@@ -1,11 +1,3 @@
 #body {
   background: #1b1b1b;
 }
-
-#chat {
-  text-align: left;
-  background: #343434;
-  width: 500px;
-  min-height: 300px;
-  padding: 20px;
-}

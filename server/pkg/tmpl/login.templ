@@ -1,0 +1,110 @@
+package tmpl
+
+templ Login() {
+
+
+@Login_Css()
+<div id="loginbox" class="flex items-center justify-center h-screen">
+  <div id="username">
+    <h3 class="text-white">Username</h3>
+    <input id="username-field" placeholder="Username" type="text" class="rounded" />
+  </div>
+  <div id="password">
+    <h3 class="text-white">Password</h3>
+    <input id="password-field" placeholder="Password" type="password" class="rounded" />
+  </div>
+  <div id="submit">
+    <button id="login-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
+      onclick="login()">Login</button>
+  </div>
+  <div id="register"  class="rounded text-white py-2 px-4"> <div hx-boost="true">  Don't have an account yet? <a class="text-blue-500" href="/signup">Sign up</a></div></div>
+</div>
+@LoginScript()
+}
+
+
+templ Login_Css() {
+  <style>
+  #loginbox {
+  display: grid;
+  grid: repeat(4, 70px) / auto-flow 200px;
+  justify-content: center;
+  align-content: center;
+}
+
+#loginbox > #username {
+  grid-row-start: 1;
+}
+
+#loginbox > #password {
+  grid-row-start: 2;
+}
+
+#loginbox > #submit {
+  grid-row-start: 3;
+}
+</style>
+} 
+
+
+templ LoginScript() {
+
+<script>
+  const user = dnsutils{
+    username: "",
+    password: "",
+  }
+  window.onload = () => {
+    document.getElementById("loginbox").classList.add("hidden")
+  }
+
+  function login() {
+    user.username = document.getElementById("username-field").value
+    user.password = document.getElementById("password-field").value
+    fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   if (data.status == 200) {
+    //     // window.location = "/";
+    //     alert("Login successful");
+    //   }
+    //   else {
+    //     alert("Login failed");
+    //     console.log(data);
+    //   }
+    // }
+    // )
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+    let response = await fetch("/api/login", {
+      method: "GET",
+      header: {
+        "Content-Type": "application/json",
+      },
+
+    });
+
+
+    //decode JSON
+    let r = await response.json();
+    console.log(r)
+    if (r.Valid == true) {
+      window.location = "/"
+
+    }
+
+
+
+
+
+  }
+
+</script>
+}

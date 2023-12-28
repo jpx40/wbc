@@ -22,7 +22,10 @@ func subrouter(r chi.Router) {
 		w.Header().Set("Content-Type", "application/json")
 		// json.NewEncoder(w).Encode(t)
 		// w.Write([]byte(string(strJ)))
-		w.Write(strJ)
+		_, err := w.Write(strJ)
+		if err != nil {
+			fmt.Println(err)
+		}
 	})
 }
 
@@ -38,7 +41,7 @@ func Create_User(url string, r chi.Router) {
 		var out db.User
 		db_tmp := db.Connect()
 		out.Name = u.Name
-		out.Email = &u.Email
+		out.Email = u.Email
 		out.Password = u.Password
 		out.CreateUser(db_tmp)
 		w.Header().Set("Content-Type", "application/json")

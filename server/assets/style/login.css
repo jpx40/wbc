@@ -1,6 +1,6 @@
 #loginbox {
   display: grid;
-  grid: repeat(3, 70px) / auto-flow 200px;
+  grid: repeat(4, 70px) / auto-flow 200px;
   justify-content: center;
   align-content: center;
 }
@@ -13,6 +13,6 @@
   grid-row-start: 2;
 }
 
-#signupbox > #submit {
+#loginbox > #submit {
   grid-row-start: 3;
 }

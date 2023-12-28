@@ -1,284 +1,44 @@
 package tmpl
 
 templ Index(comp templ.Component) {
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Dev</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.css" />
-  <script src="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-  <script defer src="https://unpkg.com/@alpinejs/ui@3.13.3-beta.1/dist/cdn.min.js"></script>
-  <script defer src="https://unpkg.com/@alpinejs/focus@3.13.3/dist/cdn.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-  <link rel="stylesheet" href="/files/style/global.css" />
-  <script type="module" src="/files/js/cmp/counter.js"></script>
-  <script type="module" src="/files/js/cmp/child.js"></script>
-</head>
-
-<body id="body">
-  @comp
-</body>
-
-</html>
+	<!DOCTYPE html>
+	<html lang="en-US">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width"/>
+			<title>Dev</title>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.css"/>
+			<script src="https://cdn.jsdelivr.net/simplemde/1.11/simplemde.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+			<script defer src="https://unpkg.com/@alpinejs/ui@3.13.3-beta.1/dist/cdn.min.js"></script>
+			<script defer src="https://unpkg.com/@alpinejs/focus@3.13.3/dist/cdn.min.js"></script>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+			<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+			<link rel="stylesheet" href="/files/style/global.css"/>
+			<script type="module" src="/files/js/cmp/counter.js"></script>
+			<script type="module" src="/files/js/cmp/child.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/uno.global.js"></script>
+		</head>
+		<body id="body">
+			@comp
+		</body>
+	</html>
 }
 
 templ Home() {
-<div class="flex items-center justify-center h-screen"></div>
-<script>
+	<div class="flex items-center justify-center h-screen"></div>
+	<script>
   window.onload = () => {
     // window.location = "/login";
   }
 </script>
 }
 
-templ SimpleChat() {
-<center>
-  <h3 class="text-white">Chat</h3>
-  <pre id="chat"></pre><input placeholder="say something" id="text" type="text" />@ChatScript()
-</center>
-}
-
-templ Login() {
-<link type="text/css" rel="stylesheet" href="/assets/style/login.css" />
-<div id="loginbox" class="flex items-center justify-center h-screen">
-  <div id="username">
-    <h3 class="text-white">Username</h3>
-    <input id="username-field" placeholder="Username" type="text" class="rounded" />
-  </div>
-  <div id="password">
-    <h3 class="text-white">Password</h3>
-    <input id="password-field" placeholder="Password" type="password" class="rounded" />
-  </div>
-  <div id="submit">
-    <button id="login-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
-      onclick="login()">Login</button>
-  </div>
-</div>
-@LoginScript()
-}
-
-templ LoginScript() {
-<script>
-  const user = {
-    username: "",
-    password: "",
-  }
-  window.onload = () => {
-    document.getElementById("loginbox").classList.add("hidden");
-  }
-
-  function login() {
-    user.username = document.getElementById("username-field").value;
-    user.password = document.getElementById("password-field").value;
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   if (data.status == 200) {
-    //     // window.location = "/";
-    //     alert("Login successful");
-    //   }
-    //   else {
-    //     alert("Login failed");
-    //     console.log(data);
-    //   }
-    // }
-    // )
-    // .catch((err) => {
-    //   console.log(err);
-    // });
-    let response = await fetch("/api/login", {
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-      },
-
-    });
-
-
-    //decode JSON
-    let r = await response.json();
-    console.log(r);
-    if (r.Valid == true) {
-      window.location = "/";
-
-    }
-
-
-
-
-
-  }
-
-</script>
-}
-
-templ Signup() {
-<link type="text/css" rel="stylesheet" href="/assets/style/signup.css" />
-<div id="signupbox" class="flex items-center justify-center h-screen">
-  <div id="username">
-    <h3 class="text-white">Username</h3>
-    <input id="username-field" placeholder="Username" type="text" class="rounded" />
-  </div>
-  <div id="password">
-    <h3 class="text-white">Password</h3>
-    <input id="password-field" placeholder="Password" type="password" class="rounded" />
-  </div>
-  <div id="email">
-    <h3 class="text-white">Email</h3>
-    <input id="email-field" placeholder="Email" type="email" class="rounded" />
-  </div>
-  <div id="submit">
-    <button id="signup-button" class="rounded text-white bg-blue-500 hover:bg-blue-700 py-2 px-4"
-      onclick="signup()">Signup</button>
-  </div>
-</div>
-@SignupScript()
-}
-
-templ SignupScript() {
-<script>
-  const user = {
-    username: "",
-    password: "",
-    email: "",
-  }
-
-  window.onload = () => {
-
-  }
-  let email = document.getElementById("email-field");
-  let username = document.getElementById("username-field");
-  let password = document.getElementById("password-field");
-  function signup() {
-    user.username = username.value;
-    user.password = password.value;
-    user.email = email.value;
-
-    if (user.username === "" || user.password === "" || user.email === "") {
-      alert("All fields are required");
-    }
-    else if (username.value.length < 4) {
-      alert("Username must be at least 4 characters long");
-    }
-    else if (password.value.length < 8) {
-      alert("Password must be at least 8 characters long");
-    }
-    else if (!check_email(email.value)) {
-      alert("Invalid email");
-
-    }
-    else {
-      fetch("/signup/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      }).then((res) => {
-        if (res.status === 200) {
-          //    window.location = "/login";
-          alert("Signup successful");
-        }
-      });
-
-    }
-
-  }
-  //email validation
-  function check_email(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-</script>
-}
-
-templ ChatScript() {
-<script>
-  let user = {
-    name: "",
-  }
-
-  let messages = [];
-  const url = "ws://" + window.location.host + "/ws";
-  const ws = new WebSocket(url);
-  const name = "Guest" + Math.floor(Math.random() * 1000);
-  const fragment = new DocumentFragment();
-
-  let msg = {
-    username: "",
-    user_id: "",
-    room_id: "",
-    msg: "",
-    time: "",
-    date: "",
-  }
-
-  ws.addEventListener("open", (event) => {
-
-    // ws.send("Hello Server!");
-  });
-
-  ws.addEventListener("message", (event) => {
-    data = JSON.parse(event.data);
-    console.log("Message from server ", data.msg);
-    messageHandler(event);
-  });
-
-  ws.addEventListener("close", (event) => {
-    ws.close();
-  }) let chat = document.getElementById("chat");
-  let text = document.getElementById("text");
-
-  text.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && text.value !== "") {
-      tmp = msg;
-      tmp.username = name;
-      tmp.msg = text.value;
-      tmp.time = now();
-      tmp.date = new Date().toLocaleDateString();
-      ws.send(JSON.stringify(tmp));
-      text.value = "";
-    }
-
-  }) function now() {
-    let iso = new Date().toISOString();
-    return iso.split("T")[1].split(".")[0];
-  }
-
-  function messageHandler(event) {
-    msg = JSON.parse(event.data);
-    let line = now() + ": " + msg.msg + "\n";
-    const span = document.createElement("span");
-    span.innerText = line;
-    span.setAttribute("class", "text-white font-italic rounded-sm bg-gray-700 px-2 py-1 my-2 block");
-    fragment.appendChild(span);
-
-    chat.appendChild(fragment);
-  }
-
-</script>
-}
-
-templ Counter() {
-<simple-counter count="0"></simple-counter>
-}
-
 templ Child() {
-<my-parent count="2">
-  <my-element></my-element>
-</my-parent>
+	<my-parent count="2">
+		<my-element></my-element>
+	</my-parent>
 }

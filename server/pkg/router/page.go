@@ -7,6 +7,10 @@ import (
 )
 
 func Page(r chi.Router) {
-	r.Get("/counter", templ.Handler(tmpl.Index(tmpl.Counter())).ServeHTTP)
+	r.Get("/", templ.Handler(tmpl.Index(tmpl.Home())).ServeHTTP)
+	r.Get("/chat", templ.Handler(tmpl.Index(tmpl.SimpleChat())).ServeHTTP)
+
+	r.Get("/login", templ.Handler(tmpl.Index(tmpl.Login())).ServeHTTP)
+	r.Get("/signup", templ.Handler(tmpl.Index(tmpl.Signup())).ServeHTTP)
 	r.Get("/child", templ.Handler(tmpl.Index(tmpl.Child())).ServeHTTP)
 }

@@ -1,0 +1,144 @@
+package tmpl
+
+templ Chat_Css() {
+ 
+ <style>
+ #chatbox {
+  display: flex;
+  flex-direction: column;
+
+  background: #343434;
+  width: 100%;
+  margin: 20px;
+  border: 1px solid #ccc;
+  height: 95vh;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#chat {
+  height: 100%;
+
+  overflow-y: scroll;
+}
+
+#text {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
+  }
+
+
+
+templ SimpleChat() {
+
+@Chat_Css()
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+<div class="w-full flex flex-col items-center justify-center">
+  <div id="chatbox"><pre id="chat"></pre><input @keyup.enter="send()" id="text" type="text" />
+  </div>
+  @ChatScript()
+</div>
+}
+
+templ ChatScript() {
+<script>
+  let user = {
+    name: "",
+  }
+
+  let messages = [];
+  const url = "ws://" + window.location.host + "/ws";
+  const ws = new WebSocket(url);
+  const name = "Guest" + Math.floor(Math.random() * 1000);
+  const fragment = new DocumentFragment();
+
+  let msg = {
+    username: "",
+    user_id: "",
+    room_id: "",
+    msg: "",
+    time: "",
+    date: "",
+  }
+
+  ws.addEventListener("open", (event) => {
+
+    // ws.send("Hello Server!");
+  });
+
+  ws.addEventListener("message", (event) => {
+    data = JSON.parse(event.data);
+    console.log("Message from server ", data.msg);
+    messageHandler(event);
+  });
+
+  ws.addEventListener("close", (event) => {
+    ws.close();
+  }) 
+  let chat = document.getElementById("chat");
+  let text = document.getElementById("text");
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+
+  function sendCookie() {
+    let csrftoken = getCookie('csrftoken');
+    let username = document.getElementById("username").value;
+    let user_id = document.getElementById("user_id").value;
+    let room_id = document.getElementById("room_id").value;
+    let msg = document.getElementById("text").value;
+    let time = now();
+    let date = new Date().toISOString().split("T")[0];
+    msg = {
+      username: username,
+      user_id: user_id,
+      room_id: room_id,
+      msg: msg,
+      time: time,
+      date: date,
+    }
+    ws.send(JSON.stringify(msg));
+    text.value = "";
+
+    
+  }
+   function now() {
+    let iso = new Date().toISOString();
+    return iso.split("T")[1].split(".")[0];
+  }
+
+  function messageHandler(event) {
+    msg = JSON.parse(event.data);
+    let line = now() + ": " + msg.msg + "\n";
+    const span = document.createElement("span");
+    span.innerText = line;
+    span.setAttribute("class", "text-white font-italic rounded-sm bg-gray-700 px-2 py-1 my-2 block");
+    fragment.appendChild(span);
+
+    chat.appendChild(fragment);
+  }
+
+</script>
+}

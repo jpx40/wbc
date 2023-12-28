@@ -10,6 +10,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/go-chi/cors v1.2.1
 	github.com/gomarkdown/markdown v0.0.0-20231115200524-a660076da3fd
+	github.com/joho/godotenv v1.5.1
 	github.com/markbates/goth v1.78.0
 	github.com/olahol/melody v1.1.4
 	github.com/phakornkiong/go-pattern-match v1.1.0
